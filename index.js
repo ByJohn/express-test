@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
+var posts = require('./posts');
+var allPosts = posts(__dirname + '/posts');
 var port = process.env.PORT || 4004;
+
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
