@@ -1,0 +1,25 @@
+doctype html
+html
+	head
+		title #{title} | My Blog
+	body
+		header.site-header
+			.site-title.wrapper My Blog
+			nav.site-navigation
+				.wrapper
+					ul
+						each navItem in navItems
+							li
+								a(href="#{navItem.url}")= navItem.name
+
+		main.page-content
+			block pageContent
+				article
+					header.page-header
+						block pageHeader
+							h1.wrapper= title
+					section.article-content.wrapper
+						block pageContentInner
+							| !{pageContent}
+		footer.site-footer
+			p By John

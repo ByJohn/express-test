@@ -1,9 +1,8 @@
-doctype html
-html
-	head
-		include head.jade
-	body
-		include header.jade
-		
-		h1= title
-		p Hello there
+extends page.jade
+
+block pageContent
+	header.page-header
+		h1.wrapper= title
+	.articles
+		each post in posts
+			include post.jade

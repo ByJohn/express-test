@@ -1,0 +1,12 @@
+article
+	header.page-header
+		.wrapper
+			if archive
+				a(href="/#{post.slug}")
+					h2= post.title
+					.publish-date= post.date.formatted
+			else
+				h1= post.title
+				.publish-date= post.date.formatted
+	.article-content.wrapper
+		| !{post.content}

@@ -11,6 +11,8 @@ var _posts = [];
 
 var _getAll = function (postsDir) {
 
+	if(typeof postsDir === 'undefined') postsDir = __dirname + '/posts';
+
 	var files = fs.readdirSync(postsDir);
 
 	files.forEach(function(filename) {
@@ -52,8 +54,22 @@ var _getAll = function (postsDir) {
 	return _posts;
 };
 
+var _getAllOfProperty = function(property) {
+	var values = [];
+
+	if(_posts.length === 0) _getAll();
+
+	_posts.forEach(function(post) {
+		values.push(post[property]);
+	});
+
+	return values;
+};
+
 var _getBySlug = function(slug) {
 	var found = false;
+
+	if(_posts.length === 0) _getAll();
 
 	_posts.forEach(function(post) {
 		if(found === false && post.slug === slug) {
@@ -124,3 +140,4 @@ function toTitleCase(str) {
 module.exports = _getAll;
 module.exports.getAll = _getAll;
 module.exports.getBySlug = _getBySlug;
+module.exports.getAllOfProperty = _getAllOfProperty;
