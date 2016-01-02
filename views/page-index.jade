@@ -3,6 +3,6 @@ extends page.jade
 block pageContent
 	header.page-header
 		h1.wrapper= title
-	.articles
+	.articles.wrapper
 		each post in posts
 			include post.jade

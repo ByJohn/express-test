@@ -17,6 +17,8 @@ app.locals.navItems = [
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
+app.use(express.static('public'));
+
 
 //Home page
 app.get('/', function (req, res) {

@@ -2,6 +2,9 @@ doctype html
 html
 	head
 		title #{title} | My Blog
+		link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css")
+		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700")
+		link(rel="stylesheet", href="/css/style.css")
 	body
 		header.site-header
 			.site-title.wrapper My Blog
@@ -22,4 +25,5 @@ html
 						block pageContentInner
 							| !{pageContent}
 		footer.site-footer
-			p By John
+			.wrapper
+				p By John

@@ -1,0 +1,13 @@
+.site-footer {
+	padding: 1em 0;
+	overflow: hidden;
+	background-color: $secondary;
+	text-align: $textAlign;
+	color: #fff;
+	font-size: 0.75em;
+	font-weight: 300;
+
+	a {
+		color: inherit;
+	}
+}
