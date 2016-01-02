@@ -11,6 +11,10 @@ app.locals.navItems = [
 	{
 		name: 'Home',
 		url: '/'
+	},
+	{
+		name: 'Sample Page',
+		url: '/sample-page'
 	}
 ];
 
@@ -23,6 +27,11 @@ app.use(express.static('public'));
 //Home page
 app.get('/', function (req, res) {
 	res.render('page-index', {title: 'Latest Posts', posts: allPosts, archive: true});
+});
+
+//Sample page
+app.get('/sample-page', function (req, res) {
+	res.render('page-sample', {title: 'Sample Page'});
 });
 
 
