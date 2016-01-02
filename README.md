@@ -15,4 +15,5 @@ Each blog post is stored as an individual file in the "posts" folder. They are M
 ## Potential Improvements
 
 * Cater for the case when no posts are available
+* Display the posts' excerpt of the content on the home page (post archive)
 * Instead of normal pages (for example, currently the Sample Page (views/page-sample.jade)) being standalone template files, use a system similar to posts, by designating a "pages" folder containing Markdown files. These pages could also automatically feed into the site navigation menu
