@@ -17,3 +17,44 @@ Each blog post is stored as an individual file in the "posts" folder. They are M
 * Cater for the case when no posts are available
 * Display the posts' excerpt of the content on the home page (post archive)
 * Instead of normal pages (for example, currently the Sample Page (views/page-sample.jade)) being standalone template files, use a system similar to posts, by designating a "pages" folder containing Markdown files. These pages could also automatically feed into the site navigation menu
+
+## How to Run (locally)
+
+#### 1. Install [Git](https://git-scm.com/) and [Node](https://nodejs.org)
+
+* Git: https://git-scm.com/
+* Node: https://nodejs.org
+
+#### 2. Install [Gulp](http://gulpjs.com/) globally
+
+```
+npm install --global gulp
+```
+
+#### 3. Clone the repo
+
+```
+git clone https://github.com/ByJohn/express-test.git
+```
+
+#### 4. Enter the repo
+
+```
+cd express-test
+```
+
+#### 5. Install the dependencies
+
+```
+npm install
+```
+
+#### 6. Build the css and start the server
+
+```
+gulp
+```
+
+#### 7. View the website in your browser
+
+Go to http://localhost:4004/
