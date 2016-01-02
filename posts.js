@@ -15,18 +15,20 @@ var _getAll = function (postsDir) {
 
 	var files = fs.readdirSync(postsDir);
 
+	//For each file found in the defined directory
 	files.forEach(function(filename) {
 		//If the file has a Markdown file extension
 		if(filename.split('.').slice(-1)[0] === 'md') {
-			var nameParts = filename.replace('.md', '').split('-'),
-				dateParts = nameParts.splice(0, 3),
-				titleParts = nameParts;
+			var nameParts = filename.replace('.md', '').split('-'), //Remove the file extension (".md") and split the string into items of an array after each hyphen
+				dateParts = nameParts.splice(0, 3), //The first three items of the array should be the year, month and day
+				titleParts = nameParts; //The remaining parts should be the article name (in a url-friendly format (slug))
 
-			var date = new Date(dateParts.join('-'));
-			var slug = titleParts.join('-').toLowerCase();
-			var title = toTitleCase(titleParts.join(' '));
-			var html = markdown.toHTML(fs.readFileSync(postsDir  + '/' + filename, 'utf8'));
+			var date = new Date(dateParts.join('-')); //Construct a date object from the date values
+			var slug = titleParts.join('-').toLowerCase(); //Rebuild the remain string parts to form the slug
+			var title = toTitleCase(titleParts.join(' ')); //Rebuild the remaining parts into a single string and it into title case
+			var html = markdown.toHTML(fs.readFileSync(postsDir  + '/' + filename, 'utf8')); //Pass the content of the file through the Markdown module, which returns html content
 
+			//Create an object with the constructed properties and add it to the _posts global variable
 			_posts.push({
 				date: {
 					object: date,
@@ -42,18 +44,20 @@ var _getAll = function (postsDir) {
 	//Loop through each post object and add an incremental integer after the slug of any duplicates
 	var postTitles = {};
 	_posts.forEach(function(post) {
+		//If the slug value of the current post in the loop is already the name of a property in the postTitles object, this means a post with the same slug has already been check in the loop and this is post with a duplicate slug name
 		if(postTitles.hasOwnProperty(post.slug)) {
-			postTitles[post.slug]++;
-			post.slug += '-' + postTitles[post.slug];
+			postTitles[post.slug]++; //Increment the tally for the current slug value in the loop
+			post.slug += '-' + postTitles[post.slug]; //Append the current post's slug value with the incremented value
 		}
 		else {
-			postTitles[post.slug] = 1;
+			postTitles[post.slug] = 1; //If the slug does not already exist in the postTitles object, add it with a value of "1" (the current tally for the current slug name)
 		}
 	});
 
 	return _posts;
 };
 
+//Return an array of a single property of every post, for example, _getAllOfProperty('title') with return an array with every post's title property
 var _getAllOfProperty = function(property) {
 	var values = [];
 
@@ -66,6 +70,7 @@ var _getAllOfProperty = function(property) {
 	return values;
 };
 
+//Returns a single post object that contains the slug property that matches the slug argument
 var _getBySlug = function(slug) {
 	var found = false;
 
@@ -81,6 +86,7 @@ var _getBySlug = function(slug) {
 	return found;
 };
 
+//Accepts a date object and returns a formatted date string - DD{th} Month YYYY
 function formatDate(date) {
 	var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -137,6 +143,7 @@ function toTitleCase(str) {
 	return title;
 }
 
+//Expose the functions in this file when this file is accessed as a module
 module.exports = _getAll;
 module.exports.getAll = _getAll;
 module.exports.getBySlug = _getBySlug;

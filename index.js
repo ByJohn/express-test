@@ -18,16 +18,17 @@ app.locals.navItems = [
 	}
 ];
 
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views'); //The view (template) locations
 app.set('view engine', 'jade');
 
-app.use(express.static('public'));
+app.use(express.static('public')); //Enables the "public" folder to be accessible from the front end (ie. through a web browser)
 
 
 //Home page
 app.get('/', function (req, res) {
 	res.render('page-index', {title: 'Latest Posts', posts: allPosts, archive: true});
 });
+
 
 //Sample page
 app.get('/sample-page', function (req, res) {
@@ -55,6 +56,7 @@ app.use(function(req, res, next) {
 });
 
 
+//Start the node server
 var server = app.listen(port, function () {
 	console.log('App running on port', port);
 });

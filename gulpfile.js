@@ -12,6 +12,7 @@ gulp.task('watch', function() {
 	gulp.watch(['source/scss/**/*.scss'], ['build-css']);
 });
 
+//Starts the Node server
 gulp.task('server', function() {
 	if (node) node.kill();
 	node = spawn('node', ['index.js'], {stdio: 'inherit'})
@@ -22,6 +23,7 @@ gulp.task('server', function() {
 	});
 });
 
+//Builds the css from the sass files
 gulp.task('build-css', function() {
 	return gulp.src('source/scss/**/*.scss')
 		.pipe(sass({style: 'compressed'}))
